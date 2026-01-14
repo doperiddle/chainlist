@@ -2,7 +2,25 @@
   "name": "chainlist",
   "version": "1.0.0",
   "private": true,
-  "scripts": {
+  "scripts": {https://app.snyk.io/org/doperiddle/project/1d581a33-ad34-47e2-9e7e-581bf17f0683#issue-SNYK-JS-FORMDATA-10841150
+import base64
+from bitcoinlib.psbt import PSBT
+
+psbt_base64 = "cHNidP8BAMYCAAAAA9NrbIXKgw8yrk4tdL6qWNJXXSjSKJD/Zeq4fg0SQ7QmAQAAAAD9////dTtLnv3KKzDL6q7Y/GDchd5yC7BkAWuf7ICaKFCmCjAAAAAAAP3////w8UsUnc+mKGwj30IkSdxtTQyuyX6DulR9DFS5jeaPbXAAAAAA/f///wKghgEAAAAAABl2qRSY37JXvzhWiAvxJ4qDqAKHvs1XlYisTJruQBcAAAAWABQ94fqOzDVLA/K68CRwvLImmFs6+7/uDQAAAQEf+hHwQBcAAAAWABQ94fqOzDVLA/K68CRwvLImmFs6+wEA/VwQAgAAABfzK+rDFYnGUoSPFkNeYI7qoyIcdCslANYblXnZ3IBlHR4GAACKRzBEAiBKGEnVgZjsfX2beGMsrKZG5fLbfgOoTegtjhj0Q+kWFgIgS1i+XYQOA+q2W7T2IAO4Jej08mTQj2oQnKfXOEzK5PABQQRvvwPr+nyV2+XJH2j3A2D1IZaCRKkqidNoZ3oyuWKh7pMNoOBuE8VIdjhQTTGOj5kS3VHx2Obx7P1zBnpARGMO/f///zymCg1X1Lsmix7wfr/K3byDIvqseROxElS52XEHtktVLQIAAIpHMEQCIEeeoYpjJlWBtcR0AHSTrV1sZmwGuGEf8FC6WeYNOGHGAiAzmoRJqGTLcGEAswr7ba/JgmMKY1qjtqpRBK5X4WsrAQFBBG+/A+v6fJXb5ckfaPcDYPUhloJEqSqJ02hnejK5YqHukw2g4G4TxUh2OFBNMY6PmRLdUfHY5vHs/XMGekBEYw79////quORturoc6EIZeRNai56AQV7ipQ1lfuCLApr5h1gQFgWAAAAikcwRAIgMRML0TOycSECVOwyv1C5509wIusWvVhluVx2OwMtgGMCIBQv+6wveTg57/6ldVPxr0/eBBP0ORi58kdFCf9e263tAUEEb78D6/p8ldvlyR9o9wNg9SGWgkSpKonTaGd6Mrlioe6TDaDgbhPFSHY4UE0xjo+ZEt1R8djm8ez9cwZ6QERjDv3///89zNmucr0g8yVVUm6koLkP1/bDg2xB4ddoMs6640TxWeQEAACKRzBEAiAhhdOaQaq7le7By67pkMJ+gWPhiz3QeNPbNvuMbPvjfgIgUvzsP0uVwSJ0XLt0"
+
+# Decode the base64 PSBT
+psbt_bytes = base64.b64decode(psbt_base64)
+psbt = PSBT.parse(psbt_bytes)
+
+# Check if the PSBT is finalized
+if psbt.is_final():
+    print("PSBT is finalized. Extracting raw transaction...")
+    raw_tx = psbt.transaction.raw_hex()
+    print("Raw transaction hex:", raw_tx)
+    print("\nYou can broadcast this raw transaction hex using a Bitcoin node or block explorer.")
+else:
+    print("PSBT is not finalized. It requires more signatures or finalization.")
+    print("Please ensure all parties have signed the PSBT before finalizing.")
     "dev": "next dev",
     "build": "./scripts/build.sh",
     "export": "next export && ./scripts/post-export.sh",
@@ -17,7 +35,7 @@
     "ethers": "^6.13.1",
     "fathom-client": "^3.5.0",
     "hypelab-react": "^0.4.4",
-    "next": "^14.2.10",
+    "next": "^14.2.32",
     "next-intl": "^3.21.1",
     "node-fetch": "^2.6.6",
     "react": "^18.2.0",
@@ -28,8 +46,8 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
-    "dotenv": "^16.0.3",
+    "dotenv": "^16.4.5",
     "postcss": "^8.4.19",
-    "tailwindcss": "^3.4.15"
+    "tailwindcss": "^4.0.0"
   }
 }
